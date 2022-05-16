@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+    tools {
+  maven 'M2_HOME'
+}
+    triggers {
+  pollSCM '* * * * *'
+}
+    stages {
+        stage('maven') {
+            steps {
+                sh 'mvn clean'
+                sh 'mvn install'
+                sh 'mvn package'
+                sleep 10
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'mvn Test'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploy'
+                sleep 10
+            }
+        }
+        stage('Docker') {
+            steps {
+                echo 'Image step'
+            }
+        }
+    }
+}
