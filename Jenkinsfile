@@ -6,24 +6,9 @@ pipeline {
     tools {
   maven 'M2_HOME'
 }
-   
 
-    stages {
-        stage("build & SonarQube analysis") {
-            agent any
-            steps {
-              withSonarQubeEnv('sonar') {
-                sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=kserge2001_geolocation'
-              }
-            }
-          }
-          stage("Quality Gate") {
-            steps {
-              timeout(time: 1, unit: 'HOURS') {
-                waitForQualityGate abortPipeline: true
-              }
-            }
-          }
+
+   
         stage('maven package') {
             steps {
                 sh 'mvn clean'
@@ -38,7 +23,7 @@ pipeline {
             }
         }
         
-         
+
           stage('deploy') {
             steps {
                 echo 'deployement'
