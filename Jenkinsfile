@@ -1,48 +1,31 @@
 pipeline {
-    triggers {
-  pollSCM('* * * * *')
-    }
+  triggers {
+  pollSCM ('* * * * *')
+}
     agent any
     tools {
   maven 'M2_HOME'
 }
-   
-
     stages {
-        stage("build & SonarQube analysis") {
-            agent any
-            steps {
-              withSonarQubeEnv('sonar') {
-                sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=kserge2001_geolocation'
-              }
-            }
-          }
-          stage("Quality Gate") {
-            steps {
-              timeout(time: 1, unit: 'HOURS') {
-                waitForQualityGate abortPipeline: true
-              }
-            }
-          }
         stage('maven package') {
             steps {
                 sh 'mvn clean'
                 sh 'mvn install'
                 sh 'mvn package'
+                
             }
         }
-          stage('test') {
+        stage('test') {
             steps {
-               sh 'mvn test'
+                sh 'mvn test'
                 
             }
         }
         
-         
-          stage('deploy') {
+        stage('Deploy') {
             steps {
-                echo 'deployement'
-                
+                echo 'Deploy'
+                sleep 5
             }
         }
     }
