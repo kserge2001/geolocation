@@ -30,12 +30,6 @@ pipeline {
             }
         }
 
-        stage('deploy') {
-            steps {
-                echo 'builgg'
-            }
-        }
-
     }
 }
 
