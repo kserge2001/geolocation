@@ -21,7 +21,7 @@ pipeline {
         }
          stage('test') {
             steps {
-                echo 'test'
+                sh 'test'
             }
         }
          stage('build') {
@@ -29,10 +29,6 @@ pipeline {
                 echo 'builgg'
             }
         }
-         stage('deploy') {
-            steps {
-                echo 'deploy'
-            }
-        }
+
     }
 }
