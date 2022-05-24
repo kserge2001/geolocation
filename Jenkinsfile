@@ -17,7 +17,7 @@ pipeline {
               }
             }
           }
-         stage('maven package') {
+         stage('maven analys') {
             steps {
                 sh 'mvn checkstyle:checkstyle'
             }
