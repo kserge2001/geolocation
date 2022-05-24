@@ -17,6 +17,11 @@ pipeline {
               }
             }
           }
+         stage('maven package') {
+            steps {
+                sh 'mvn checkstyle:checkstyle'
+            }
+        }
           stage("Quality Gate") {
             steps {
               timeout(time: 1, unit: 'HOURS') {
