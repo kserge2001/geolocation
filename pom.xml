@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.spring</groupId>
 	<artifactId>bioMedical</artifactId>
-	<version>0.0.3-RELEASE</version>
+	<version>0.0.4-RELEASE</version>
 	<name>bioMedical</name>
 	<description>Demo project for Spring Boot</description>
 	<packaging>jar</packaging>
