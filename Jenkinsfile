@@ -14,7 +14,6 @@ pipeline{
             steps{
                 script{
                     def mavenPom = readMavenPom file: 'pom.xml'
-
                     nexusArtifactUploader artifacts: 
                     [[artifactId: "${mavenPom.artifactId}",
                     classifier: '',
