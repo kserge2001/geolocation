@@ -12,7 +12,7 @@ pipeline{
         }
         stage('upload artifact'){
             steps{
-                scritp{
+                script{
                nexusArtifactUploader artifacts: 
                [[artifactId: '${POM_ARTIFACTID}',
                 classifier: '',
