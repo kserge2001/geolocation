@@ -1,5 +1,5 @@
 pipeline{
-    agen any
+    agent any
     tools {
         maven 'M2_HOME'
     }
