@@ -33,7 +33,7 @@ pipeline{
         }
         stage('list the dir'){
             steps{
-                sh 'pwd'
+                sh 'ls'
             }
 
         }
