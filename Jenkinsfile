@@ -33,7 +33,7 @@ pipeline{
         }
         stage('list the dir'){
             steps{
-                sh 'ls'
+                sh ' ls'
             }
 
         }
