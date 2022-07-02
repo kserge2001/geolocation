@@ -1,6 +1,6 @@
 properties([pipelineTriggers([githubPush()])])
 pipeline{
-    agent any
+    agent maven:3.8.6-eclipse-temurin-8-alpine
     tools {
         maven 'maven3'
     }
