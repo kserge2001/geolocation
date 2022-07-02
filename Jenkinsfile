@@ -1,3 +1,4 @@
+properties([pipelineTriggers([githubPush()])])
 pipeline{
     agent any
     tools {
