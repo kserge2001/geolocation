@@ -20,13 +20,15 @@ pipeline {
             }
           }
         
-          stage("Quality Gate") {
-            steps {
-              timeout(time: 1, unit: 'HOURS') {
-                waitForQualityGate abortPipeline: true
-              }
-            }
-          }
+          stage('Sonar Quality Gate') {
+        sleep 180
+        timeout(time: 25, unit: 'MINUTES') {
+            def qg = waitForQualityGate()
+                    if (!(qg.status == 'OK' || qg.status == 'WARN')) {
+                        error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                    }
+        }
+    }
         stage('maven package') {
             steps {
                 sh 'mvn clean'
