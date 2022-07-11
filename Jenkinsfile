@@ -1,54 +1,43 @@
-pipeline {
-    triggers {
-  pollSCM('* * * * *')
+properties([pipelineTriggers([githubPush()])])
+pipeline{
+    agent {
+        docker { image 'maven:3.8.6-eclipse-temurin-8-alpine' }
     }
-    agent any
     tools {
-  maven 'M2_HOME'
-}
-   
+        maven 'maven3'
+    }
+    stages{
+        stage('mavin build'){
+            steps{
+                sh 'mvn clean install package'
+            }
 
-    stages {
-        stage("build & SonarQube analysis") {
-            agent any
-            steps {
-              withSonarQubeEnv('sonar') {
-                sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=kserge2001_geolocation'
-              }
-            }
-          }
-         stage('maven analys') {
-            steps {
-                sh 'mvn checkstyle:checkstyle'
-            }
         }
-          stage("Quality Gate") {
-            steps {
-              timeout(time: 1, unit: 'HOURS') {
-                waitForQualityGate abortPipeline: true
-              }
+        stage('upload artifact'){
+            steps{
+                script{
+                    def mavenPom = readMavenPom file: 'pom.xml'
+                    nexusArtifactUploader artifacts: 
+                    [[artifactId: "${mavenPom.artifactId}",
+                    classifier: '',
+                    file: "target/${mavenPom.artifactId}-${mavenPom.version}.${mavenPom.packaging}",
+                    type: "${mavenPom.packaging}"]],
+                    credentialsId: 'NexusID',
+                    groupId: "${mavenPom.groupId}",
+                     nexusUrl: '45.33.7.113:8081',
+                      nexusVersion: 'nexus3',
+                       protocol: 'http',
+                        repository: 'biom',
+                         version: "${mavenPom.version}" 
+                }
             }
-          }
-        stage('maven package') {
-            steps {
-                sh 'mvn clean'
-                sh 'mvn install'
-                sh 'mvn package'
-            }
+
         }
-          stage('test') {
-            steps {
-               sh 'mvn test'
-                
+        stage('list the dir'){
+            steps{
+                sh ' pwd'
             }
-        }
-        
-         
-          stage('deploy') {
-            steps {
-                echo 'deployement'
-                
-            }
+
         }
     }
 }
