@@ -21,7 +21,8 @@ pipeline {
           }
         
           stage('Sonar Quality Gate') {
-        sleep 180
+              steps {
+                  sleep 180
         timeout(time: 25, unit: 'MINUTES') {
             def qg = waitForQualityGate()
                     if (!(qg.status == 'OK' || qg.status == 'WARN')) {
@@ -29,6 +30,7 @@ pipeline {
                     }
         }
     }
+          }
         stage('maven package') {
             steps {
                 sh 'mvn clean'
