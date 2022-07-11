@@ -15,15 +15,12 @@ pipeline {
             
             steps {
               withSonarQubeEnv('sonar') {
+                  sh 'mvn sonar:sonar'
                 sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=unixclass_geolocation2'
               }
             }
           }
-         stage('maven analys') {
-            steps {
-                sh 'mvn checkstyle:checkstyle'
-            }
-        }
+        
           stage("Quality Gate") {
             steps {
               timeout(time: 1, unit: 'HOURS') {
