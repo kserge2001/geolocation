@@ -2,9 +2,7 @@ pipeline {
     triggers {
   pollSCM('* * * * *')
     }
-    agent {
-        docker { image 'maven:3.8.6-openjdk-18' }
-    }
+    agent any
     tools {
   maven 'maven3'
 }
@@ -12,7 +10,9 @@ pipeline {
 
     stages {
         stage("build & SonarQube analysis") {
-            agent any
+            agent {
+        docker { image 'maven:3.8.6-openjdk-18' }
+    }
             steps {
               withSonarQubeEnv('sonar') {
                 sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=kserge2001_geolocation'
