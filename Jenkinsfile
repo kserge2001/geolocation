@@ -13,7 +13,6 @@ pipeline {
     stages {
         stage("build & SonarQube analysis") {
             
-    }
             steps {
               withSonarQubeEnv('sonar') {
                 sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=unixclass_geolocation2'
