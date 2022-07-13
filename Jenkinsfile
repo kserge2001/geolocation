@@ -1,43 +1,39 @@
-properties([pipelineTriggers([githubPush()])])
 pipeline{
-    agent {
-        docker { image 'maven:3.8.6-eclipse-temurin-8-alpine' }
-    }
+
+    agent any
     tools {
-        maven 'maven3'
+        maven "M2_HOME"
     }
+
+
     stages{
-        stage('mavin build'){
+        stage('maven build'){
             steps{
                 sh 'mvn clean install package'
             }
-
         }
-        stage('upload artifact'){
+    
+
+        stage('uplod articfact'){
             steps{
-                script{
-                    def mavenPom = readMavenPom file: 'pom.xml'
-                    nexusArtifactUploader artifacts: 
-                    [[artifactId: "${mavenPom.artifactId}",
-                    classifier: '',
-                    file: "target/${mavenPom.artifactId}-${mavenPom.version}.${mavenPom.packaging}",
-                    type: "${mavenPom.packaging}"]],
-                    credentialsId: 'NexusID',
-                    groupId: "${mavenPom.groupId}",
-                     nexusUrl: '45.33.7.113:8081',
-                      nexusVersion: 'nexus3',
-                       protocol: 'http',
-                        repository: 'biom',
-                         version: "${mavenPom.version}" 
-                }
+               script{
+                def mavenPom = readMavenPom file: 'pom.xml' 
+                nexusArtifactUploader artifacts:
+                 [[artifactId: "${mavenPom.ARTIFACTID}", 
+                classifier: '',
+                 file: "target/${mavenPom.ARTIFACTID}-${mavenPom.VERSION}.${mavenPom.PACKAGING}",
+                  type: "${mavenPom.PACKAGING}"]],
+                   credentialsId: 'NexusID', 
+                   groupId: "${mavenPom.GROUPID}", 
+                   nexusUrl: '192.168.0.87:8081',
+                    nexusVersion: 'nexus3', 
+                    protocol: 'http', 
+                    repository: 'bio-medic-app', 
+                    version: "${mavenPom.VERSION}"
+               }
             }
-
         }
-        stage('list the dir'){
-            steps{
-                sh ' pwd'
-            }
-
-        }
+       
+      
     }
 }
