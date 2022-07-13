@@ -19,17 +19,17 @@ pipeline{
             steps{
                script{
                 nexusArtifactUploader artifacts:
-                 [[artifactId: '${POM_ARTIFACTID}', 
+                 [[artifactId: "${POM_ARTIFACTID}", 
                 classifier: '',
-                 file: 'target/${POM_ARTIFACTID}-${POM_VERSION}.${POM_PACKAGING}',
-                  type: '${POM_PACKAGING}']],
+                 file: "target/${POM_ARTIFACTID}-${POM_VERSION}.${POM_PACKAGING}",
+                  type: "${POM_PACKAGING}"]],
                    credentialsId: 'NexusID', 
-                   groupId: '${POM_GROUPID}', 
+                   groupId: "${POM_GROUPID}", 
                    nexusUrl: '192.168.0.87:8081',
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
                     repository: 'bio-medic-app', 
-                    version: '${POM_VERSION}'
+                    version: "${POM_VERSION}"
                }
             }
         }
