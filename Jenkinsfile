@@ -17,6 +17,7 @@ pipeline{
     stages{
         stage('uplod articfact'){
             steps{
+               script{
                 nexusArtifactUploader artifacts:
                  [[artifactId: '${POM_ARTIFACTID}', 
                 classifier: '',
@@ -29,6 +30,7 @@ pipeline{
                     protocol: 'http', 
                     repository: 'bio-medic-app', 
                     version: '${POM_VERSION}'
+               }
             }
         }
     }
