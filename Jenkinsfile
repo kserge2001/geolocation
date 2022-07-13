@@ -13,4 +13,21 @@ pipeline{
             }
         }
     }
+
+    stages{
+        stage('ckeck pwd'){
+            steps{
+                sh 'pwd'
+            }
+        }
+    }
+
+
+    stages{
+        stage('list the dir'){
+            steps{
+                sh 'ls'
+            }
+        }
+    }
 }
