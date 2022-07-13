@@ -1,15 +1,15 @@
 pipeline{
 
     agent any
-    tiils {
+    tools {
         maven "M2_HOME"
     }
 
 
     stages{
-        stage('maven'){
+        stage('maven build'){
             steps{
-                sh mvn clean install package
+                sh 'mvn clean install package'
             }
         }
     }
