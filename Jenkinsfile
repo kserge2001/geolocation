@@ -12,9 +12,8 @@ pipeline{
                 sh 'mvn clean install package'
             }
         }
-    }
+    
 
-    stages{
         stage('uplod articfact'){
             steps{
                script{
@@ -33,10 +32,7 @@ pipeline{
                }
             }
         }
-    }
-
-
-    stages{
+       
         stage('list the dir'){
             steps{
                 sh 'ls'
