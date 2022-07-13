@@ -19,9 +19,9 @@ pipeline{
                script{
                 def mavenPom = readMavenPom file: 'pom.xml' 
                 nexusArtifactUploader artifacts:
-                 [[artifactId: "${POM_ARTIFACTID}", 
+                 [[artifactId: "${mavenPom.ARTIFACTID}", 
                 classifier: '',
-                 file: "target/${POM_ARTIFACTID}-${POM_VERSION}.${POM_PACKAGING}",
+                 file: "target/${mavenPom.ARTIFACTID}-${mavenPom.VERSION}.${mavenPom.PACKAGING}",
                   type: "${mavenPom.PACKAGING}"]],
                    credentialsId: 'NexusID', 
                    groupId: "${mavenPom.GROUPID}", 
