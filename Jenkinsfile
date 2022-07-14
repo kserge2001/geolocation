@@ -1,8 +1,6 @@
 properties([pipelineTriggers([githubPush()])])
 pipeline{
-    agent {
-        docker { image 'maven:3.8.6-eclipse-temurin-8-alpine' }
-    }
+    agent any
     tools {
         maven 'maven3'
     }
