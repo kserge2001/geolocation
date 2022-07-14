@@ -1,39 +1,43 @@
+properties([pipelineTriggers([githubPush()])])
 pipeline{
-
-    agent any
-    tools {
-        maven "M2_HOME"
+    agent {
+        docker { image 'maven:3.8.6-eclipse-temurin-8-alpine' }
     }
-
-
+    tools {
+        maven 'maven3'
+    }
     stages{
-        stage('maven build'){
+        stage('mavin build'){
             steps{
                 sh 'mvn clean install package'
             }
-        }
-    
 
-        stage('uplod articfact'){
-            steps{
-               script{
-                def mavenPom = readMavenPom file: 'pom.xml' 
-                nexusArtifactUploader artifacts:
-                 [[artifactId: "${mavenPom.ARTIFACTID}", 
-                 classifier: '',
-                 file: "target/${mavenPom.ARTIFACTID}-${mavenPom.VERSION}.${mavenPom.PACKAGING}",
-                  type: "${mavenPom.PACKAGING}"]],
-                   credentialsId: 'NexusID', 
-                   groupId: "${mavenPom.GROUPID}", 
-                   nexusUrl: '192.168.0.87:8081',
-                    nexusVersion: 'nexus3', 
-                    protocol: 'http', 
-                    repository: 'bio-medic-app', 
-                    version: "${mavenPom.VERSION}"
-               }
-            }
         }
-       
-      
+        stage('upload artifact'){
+            steps{
+                script{
+                    def mavenPom = readMavenPom file: 'pom.xml'
+                    nexusArtifactUploader artifacts: 
+                    [[artifactId: "${mavenPom.artifactId}",
+                    classifier: '',
+                    file: "target/${mavenPom.artifactId}-${mavenPom.version}.${mavenPom.packaging}",
+                    type: "${mavenPom.packaging}"]],
+                    credentialsId: 'NexusID',
+                    groupId: "${mavenPom.groupId}",
+                     nexusUrl: '45.33.7.113:8081',
+                      nexusVersion: 'nexus3',
+                       protocol: 'http',
+                        repository: 'biom',
+                         version: "${mavenPom.version}" 
+                }
+            }
+
+        }
+        stage('list the dir'){
+            steps{
+                sh ' pwd'
+            }
+
+        }
     }
 }
