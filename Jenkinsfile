@@ -18,7 +18,7 @@ pipeline {
         echo "My variable is ${mavenPom.version}"
       }
     }
-  }
+  
 
         stage("build & SonarQube analysis") {
             
