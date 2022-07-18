@@ -19,6 +19,11 @@ pipeline {
               }
             }
           }
+        stage("Quality gate") {
+            steps {
+                waitForQualityGate abortPipeline: true
+            }
+        }
         
          
         stage('maven package') {
