@@ -3,9 +3,7 @@ pipeline {
     triggers {
   pollSCM('* * * * *')
     }
-   agent {
-        docker { image 'maven:3.8.6-openjdk-11-slim' }
-   }
+   agent any
     tools {
   maven 'M2_HOME'
 }
@@ -18,6 +16,9 @@ environment {
     stages {
 
         stage("build & SonarQube analysis") {
+            agent {
+        docker { image 'maven:3.8.6-openjdk-11-slim' }
+   }
             
             
             steps {
@@ -49,7 +50,7 @@ environment {
             }
         }
         stage('Build Image') {
-            agent none
+            
             steps {
                 script{
                   def mavenPom = readMavenPom file: 'pom.xml'
@@ -58,7 +59,8 @@ environment {
             }
         }
         stage('Deploy image') {
-            agent none
+           
+            
             steps{
                 script{ 
                     docker.withRegistry("https://"+registry,"ecr:us-east-1:"+registryCredential) {
