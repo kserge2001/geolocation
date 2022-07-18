@@ -20,6 +20,7 @@ pipeline {
             }
           }
         stage("Quality Gate"){
+            steps {
 
         timeout(time: 10, unit: ‘MINUTES’) {
               def qg= waitForQualityGate()
@@ -30,6 +31,7 @@ pipeline {
               echo ‘Quality Gate Passed’
 
     }
+        }
         
          
         stage('maven package') {
