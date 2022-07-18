@@ -9,18 +9,14 @@ pipeline {
     tools {
   maven 'M2_HOME'
 }
+    script {
+    def mavenPom = readMavenPom file: 'pom.xml'
+    }
    
 
     stages {
 
-    stage ("Print variable") {
-      steps {
-          script {
-         def mavenPom = readMavenPom file: 'pom.xml'
-        
-      }
-    }
-    }
+    
         stage("print variables"){
             steps{
             echo "My variable is ${mavenPom.version}"
