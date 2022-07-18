@@ -19,6 +19,7 @@ environment {
 
         stage("build & SonarQube analysis") {
             
+            
             steps {
               withSonarQubeEnv('SonarServer') {
                   sh 'mvn sonar:sonar -Dsonar.projectKey=kserge2001_geolocation -Dsonar.java.binaries=.'
@@ -48,6 +49,7 @@ environment {
             }
         }
         stage('Build Image') {
+            agent any
             steps {
                 script{
                   def mavenPom = readMavenPom file: 'pom.xml'
@@ -56,6 +58,7 @@ environment {
             }
         }
         stage('Deploy image') {
+            agent any
             steps{
                 script{ 
                     docker.withRegistry("https://"+registry,"ecr:us-east-1:"+registryCredential) {
