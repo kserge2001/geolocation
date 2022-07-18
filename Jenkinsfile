@@ -1,3 +1,4 @@
+def mavenPom = readMavenPom file: 'pom.xml'
 pipeline {
     triggers {
   pollSCM('* * * * *')
@@ -11,6 +12,14 @@ pipeline {
    
 
     stages {
+
+    stage ("Print variable") {
+      steps {
+        echo "My variable is ${mavenPom.version}"
+      }
+    }
+  }
+}
         stage("build & SonarQube analysis") {
             
             steps {
