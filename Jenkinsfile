@@ -15,7 +15,7 @@ pipeline {
             
             steps {
               withSonarQubeEnv('SonarServer') {
-                  sh 'mvn sonar:sonar -pduplica -Dsonar.projectKey=kserge2001_geolocation -Dsonar.java.binaries=.'
+                  sh 'mvn sonar:sonar -Pduplica -Dsonar.projectKey=kserge2001_geolocation -Dsonar.java.binaries=.'
               }
             }
           }
