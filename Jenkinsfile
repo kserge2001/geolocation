@@ -13,6 +13,7 @@ environment {
     registry = '076892551558.dkr.ecr.us-east-1.amazonaws.com/jenkins'
     registryCredential = 'aws_ecr_id'
     dockerimage = ''
+}
 
     stages {
 
