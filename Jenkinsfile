@@ -49,7 +49,7 @@ environment {
             }
         }
         stage('Build Image') {
-            agent any
+            agent none
             steps {
                 script{
                   def mavenPom = readMavenPom file: 'pom.xml'
@@ -58,7 +58,7 @@ environment {
             }
         }
         stage('Deploy image') {
-            agent any
+            agent none
             steps{
                 script{ 
                     docker.withRegistry("https://"+registry,"ecr:us-east-1:"+registryCredential) {
