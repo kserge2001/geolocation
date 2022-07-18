@@ -17,10 +17,15 @@ pipeline {
       steps {
           script {
          def mavenPom = readMavenPom file: 'pom.xml'
-        echo "My variable is ${mavenPom.version}"
+        
       }
     }
     }
+        stage("print variables"){
+            steps{
+            echo "My variable is ${mavenPom.version}"
+            }
+        }
   
 
         stage("build & SonarQube analysis") {
