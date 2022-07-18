@@ -1,4 +1,4 @@
-def mavenPom = readMavenPom file: 'pom.xml'
+
 pipeline {
     triggers {
   pollSCM('* * * * *')
@@ -15,8 +15,11 @@ pipeline {
 
     stage ("Print variable") {
       steps {
+          script {
+         def mavenPom = readMavenPom file: 'pom.xml'
         echo "My variable is ${mavenPom.version}"
       }
+    }
     }
   
 
