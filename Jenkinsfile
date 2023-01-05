@@ -26,6 +26,7 @@ pipeline{
              protocol: 'http', 
              repository: 'biom', 
              version: '${POM_VERSION}'
+            }
         }
 
 
