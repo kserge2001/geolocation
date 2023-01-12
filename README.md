@@ -1,5 +1,9 @@
-# patients_geolocation
-fdfdfghfjj
-Project to locate patients in order to facilitate their home appointments by medical specialists
-haVDGHAVJCXHSJAVC
-jhgvfkjghcvgc
+# check-endpoint
+
+Steps to run our script
+
+```python
+pip3 install -r requirements.txt
+python3 check_endpoint.py
+
+```
