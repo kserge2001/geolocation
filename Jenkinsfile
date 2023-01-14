@@ -28,5 +28,28 @@ pipeline {
                 }
             }
        }
+       stage("build & SonarQube analysis") {
+            agent {
+        docker { image 'maven:3.8.6-openjdk-11-slim' }
+            }
+             steps {
+              withSonarQubeEnv('SonarServer') {
+                  sh 'mvn sonar:sonar -Dsonar.projectKey=kserge2001_geolocation -Dsonar.java.binaries=.'
+              }
+            }
+        }
+          stage('Check Quality Gate') {
+            steps {
+                echo 'Checking quality gate...'
+                script {
+                    timeout(time: 20, unit: 'MINUTES') {
+                        def qg = waitForQualityGate()
+                        if (qg.status != 'OK') {
+                            error "Pipeline stopped because of quality gate status: ${qg.status}"
+                        }
+                    }
+                }
+            }
+        }
     }
 }
