@@ -11,6 +11,7 @@ pipeline {
         }
         stage ('upload artifact'){
              steps{
+                script {
             nexusArtifactUploader artifacts:
              [[artifactId: '${POM_ARTIFACTID}', 
                 classifier: '', 
@@ -23,11 +24,7 @@ pipeline {
                                 protocol: 'http', 
                                   repository: 'maven-nexus-repo',
                                     version: ' ${POM_VERSION}'
-            }
-        }
-   stage ('list the dir'){
-        steps{
-            sh 'ls'
+                }
             }
        }
     }
