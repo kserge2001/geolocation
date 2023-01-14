@@ -13,17 +13,17 @@ pipeline {
              steps{
                 script {
             nexusArtifactUploader artifacts:
-             [[artifactId: '${POM_ARTIFACTID}', 
+             [[artifactId: "${POM_ARTIFACTID}", 
                 classifier: '', 
-                  file: 'target/${POM_ARTIFACTID}-${POM_VERSION}.${POM_PACKAGING}', 
-                    type: '${POM_PACKAGING}']], 
-                       credentialsId: 'NexusID', 
+                  file: "target/${POM_ARTIFACTID}-${POM_VERSION}.${POM_PACKAGING}", 
+                    type: "${POM_PACKAGING}"]], 
+                       credentialsId: "NexusI", 
                           groupId: '${POM_GROUPID}', 
-                            nexusUrl: '192.168.78.112:8081/', 
+                            nexusUrl: '192.168.78.112:8081', 
                               nexusVersion: 'nexus3', 
                                 protocol: 'http', 
                                   repository: 'maven-nexus-repo',
-                                    version: ' ${POM_VERSION}'
+                                    version: "${POM_VERSION}"
                 }
             }
        }
