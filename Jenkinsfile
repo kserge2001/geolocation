@@ -22,7 +22,7 @@ environment {
             
             
             steps {
-              withSonarQubeEnv('SonarQube') {
+              withSonarQubeEnv("SonarServer") {
                   sh 'mvn sonar:sonar -Dsonar.projectKey=henrykrop2022/geolocation-23 -Dsonar.java.binaries=.'
               }
             }
