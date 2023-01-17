@@ -17,7 +17,7 @@ environment {
     stages {
 
         stage("build & SonarQube analysis") {
-             agent any {
+             agent {
          docker { image 'maven:3.8.6-openjdk-11-slim' }
     }
          stages {
