@@ -1,9 +1,8 @@
-
 pipeline {
     triggers {
-  pollSCM('* * * * *')
+    pollSCM('* * * * *')
     }
-
+}
    agent any
     tools {
   maven 'M2_HOME'
@@ -19,15 +18,14 @@ environment {
         stage("build & SonarQube analysis") {
             agent {
         docker { image 'maven:3.8.6-openjdk-11-slim' }
-        }
-    }    
+            }
+        }    
+    }
             steps {
               withSonarQubeEnv('SonarServer') {
                 sh 'mvn sonar:sonar -Dsonar.projectKey=henrykrop2022/geolocation-23 -Dsonar.java.binaries=.'
-              }
             }
         }
-    
         stage('Check Quality Gate') {
             steps {
                 echo 'Checking quality gate...'
@@ -49,9 +47,8 @@ environment {
             }
         }
         stage('Build Image') {
-            
             steps {
-                script{
+                script {
                   def mavenPom = readMavenPom file: 'pom.xml'
                     dockerImage = docker.build registry + ":${mavenPom.version}"
                 } 
@@ -68,8 +65,8 @@ environment {
                 }
             }
         }
-        stage ('upload artifact'){
-             steps{
+        stage ('upload artifact') {
+             steps {
                 script {
                     def mavenPom = readMavenPom file: 'pom.xml'
             nexusArtifactUploader artifacts:
@@ -84,14 +81,7 @@ environment {
                                 protocol: 'http', 
                                   repository: 'maven-nexus-repo',
                                     version: "${mavenPom.version}"
-                   }
-                }
-            
-            }
-       
-       }         
-    
-
-
-
+                        }
+                    }   
+                }        
 
