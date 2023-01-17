@@ -89,8 +89,6 @@ environment {
                                     version: "${mavenPom.version}"
                 }
             }
-       }    
-         
-         
+       }         
     }
 
