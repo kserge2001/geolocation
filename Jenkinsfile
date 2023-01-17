@@ -16,9 +16,15 @@ environment {
     stages {
 
         stage("build & SonarQube analysis") {
+<<<<<<< HEAD
              agent any
         // docker { image 'maven:3.8.6-openjdk-11-slim' }
 //    }
+=======
+            agent {
+         docker { image 'maven:3.8.6-openjdk-11-slim' }
+    }
+>>>>>>> 5f0d0155e6dcdadf2b1b0cb8cd8e01cd40d52366
             
             steps {
               withSonarQubeEnv("SonarServer") {
