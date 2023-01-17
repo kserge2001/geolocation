@@ -20,12 +20,12 @@ environment {
              agent {
          docker { image 'maven:3.8.6-openjdk-11-slim' }
     }
-         stages {
-            agent {
-         docker { image 'maven:3.8.6-openjdk-11-slim' }
+            stages {
+                agent {
+            docker { image 'maven:3.8.6-openjdk-11-slim' }
     }    
             steps {
-              withSonarQubeEnv("SonarServer") {
+              withSonarQubeEnv('SonarServer') {
                   sh 'mvn sonar:sonar -Dsonar.projectKey=henrykrop2022/geolocation-23 -Dsonar.java.binaries=.'
               }
             }
