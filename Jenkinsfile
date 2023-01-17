@@ -3,7 +3,7 @@ pipeline {
     triggers {
     pollSCM('* * * * *')
     }
-}
+
    agent any
     tools {
   maven 'M2_HOME'
@@ -19,8 +19,8 @@ environment {
         stage("build & SonarQube analysis") {
             agent {
         docker { image 'maven:3.8.6-openjdk-11-slim' }
-            }
-        }    
+            
+            
     }
             steps {
               withSonarQubeEnv('SonarServer') {
@@ -57,7 +57,6 @@ environment {
         }
         stage('Deploy image') {
            
-            
             steps{
                 script{ 
                     docker.withRegistry("https://"+registry,"ecr:us-east-1:"+registryCredential) {
@@ -84,5 +83,8 @@ environment {
                                     version: "${mavenPom.version}"
                         }
                     }   
-                }        
+                } 
+            }
+        }    
+    }       
 
