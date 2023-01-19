@@ -12,16 +12,15 @@ pipeline {
     dockerimage = ''
    }
   stages {
-
     stage ("build & SonarQube analysis") {
       agent {
         docker { image 'maven:3.8.6-openjdk-11-slim' }
       }
     }
-   }
-    steps {
-      withSonarQubeEnv('SonarServer') {
-       sh 'mvn sonar:sonar -Dsonar.projectKey=henrykrop2022/geolocation-23 -Dsonar.java.binaries=.'
+  }
+  steps {
+    withSonarQubeEnv('SonarServer') {
+      sh 'mvn sonar:sonar -Dsonar.projectKey=henrykrop2022/geolocation-23 -Dsonar.java.binaries=.'
     }
     stage ('Check Quality Gate') {
       steps {
