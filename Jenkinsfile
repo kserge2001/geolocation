@@ -12,6 +12,7 @@ pipeline {
     dockerimage = ''
    }
   stages {
+
     stage ("build & SonarQube analysis") {
       agent {
         docker { image 'maven:3.8.6-openjdk-11-slim' }
@@ -23,15 +24,15 @@ pipeline {
       sh 'mvn sonar:sonar -Dsonar.projectKey=henrykrop2022/geolocation-23 -Dsonar.java.binaries=.'
     }
     stage ('Check Quality Gate') {
-    } 
-   }
-  steps {
+      steps {
     echo 'Checking quality gate...'
     script {
       timeout(time: 20, unit: 'MINUTES') {
         def qg = waitForQualityGate()
         if (qg.status != 'OK') {
           error "Pipeline stopped because of quality gate status: ${qg.status}"
+            } 
+          }
         }
       }
     }
@@ -43,6 +44,7 @@ pipeline {
       }
     }
     stage ('Build Image') {
+      
       steps {
         script {
           def mavenPom = readMavenPom file: 'pom.xml'
