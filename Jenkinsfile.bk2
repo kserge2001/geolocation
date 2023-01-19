@@ -69,7 +69,6 @@ environment {
                 }
             }
         }    
-        
         stage ('upload artifact') {
             steps {
                 script {
