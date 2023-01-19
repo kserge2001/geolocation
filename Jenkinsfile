@@ -19,9 +19,9 @@ pipeline {
       }
     }
    }
-  steps {
-    withSonarQubeEnv('SonarServer') {
-      sh 'mvn sonar:sonar -Dsonar.projectKey=henrykrop2022/geolocation-23 -Dsonar.java.binaries=.'
+    steps {
+      withSonarQubeEnv('SonarServer') {
+       sh 'mvn sonar:sonar -Dsonar.projectKey=henrykrop2022/geolocation-23 -Dsonar.java.binaries=.'
     }
     stage ('Check Quality Gate') {
       steps {
