@@ -1,4 +1,4 @@
 FROM openjdk:8
-ADD target/*.jar biom.jar
-EXPOSE 8082
-CMD java -jar biom.jar
+ADD target/spring-boot-maven-plugin.jar spring-boot-maven-plugin.jar
+EXPOSE 8081
+ENTRYPORT ["-java","-jar","spring-boot-maven-plugin.jar"]
