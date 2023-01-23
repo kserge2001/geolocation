@@ -25,13 +25,9 @@ triggers {
             steps{
                 echo 'Deploy' 
                 sleep 10    
-                    }
-                }
-        stage('Docker') {
-            steps {
-                echo 'Image step'
-           } 
-        }   
+            }    
+                
+        } 
          
     }
 }
