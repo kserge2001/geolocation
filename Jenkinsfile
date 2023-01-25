@@ -12,8 +12,10 @@ pipeline {
         stage('UNIT Testing'){
 
             steps{
+                dir("/../.."){
                 sh 'mvn clean test'
-            }  
+                } 
+            }
         }
         stage('Integration testing'){
 
