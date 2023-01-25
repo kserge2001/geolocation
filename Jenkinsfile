@@ -19,6 +19,7 @@ pipeline {
 
             steps{
                 sh 'mvn verify-DskipunitTests'
-            }  
+            } 
+        } 
     }
 }
