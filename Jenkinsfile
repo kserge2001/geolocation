@@ -1,6 +1,9 @@
 pipeline {
 
-    agent any
+   tools { 
+        maven 'JenkinsMaven' 
+        jdk 'JenkinsJDK'
+   }
 
     stages{
         stage ('Git Checkout'){
@@ -12,9 +15,8 @@ pipeline {
         stage('UNIT Testing'){
 
             steps{
-                dir("/../.."){
-                sh 'mvn clean test'
-                } 
+                sh 'mvn clean package'
+            
             }
         }
         stage('Integration testing'){
