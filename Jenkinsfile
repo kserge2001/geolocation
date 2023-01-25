@@ -12,8 +12,7 @@ pipeline {
         stage('UNIT Testing'){
 
             steps{
-                sh 'clean package'
-                sh 'mvn test'
+                sh 'maven clean test'
             }  
         }
         stage('Integration testing'){
