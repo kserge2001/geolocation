@@ -1,6 +1,7 @@
 pipeline {
-
-   tools { 
+    agent
+     
+     tools { 
         maven 'JenkinsMaven' 
         jdk 'JenkinsJDK'
    }
