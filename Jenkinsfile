@@ -9,16 +9,16 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/henrykrop2022/geolocation-23.git'
             }  
         }
-        stage ('Unit Testing'){
+        stage ('UNIT Testing'){
 
             steps{
                 sh 'mvn test'
             }  
         }
-        stage ('aiantergration testing'){
+        stage ('Integration testing'){
 
             steps{
-                sh 'mvn verify-DskipunitTests'
+                sh 'mvn verify-DskipUnitTests'
             } 
         } 
     }
