@@ -12,6 +12,7 @@ pipeline {
         stage('UNIT Testing'){
 
             steps{
+                sh 'clean package'
                 sh 'mvn test'
             }  
         }
