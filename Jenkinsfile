@@ -1,11 +1,6 @@
 pipeline {
     agent any
-
-     tools { 
-        maven 'JenkinsMaven' 
-        jdk 'JenkinsJDK'
    }
-
     stages{
         stage ('Git Checkout'){
 
