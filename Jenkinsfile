@@ -12,7 +12,7 @@ pipeline {
         stage('UNIT Testing'){
 
             steps{
-                sh 'maven clean test'
+                sh 'mvn clean test'
             }  
         }
         stage('Integration testing'){
