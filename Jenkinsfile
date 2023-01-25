@@ -2,11 +2,12 @@ pipeline {
 
     agent any
 
-    stages {
+    stages{
         stage ('Git Checkout'){
-            
-            steps
-            git branch: 'main', url: 'https://github.com/henrykrop2022/geolocation-23.git'
+
+            steps{
+                git branch: 'main', url: 'https://github.com/henrykrop2022/geolocation-23.git'
+            }  
         }
     }
 }
