@@ -30,7 +30,8 @@ pipeline {
         stage ('SonarQube analysis'){
             steps {
                 script{
-                 sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=henrykrop2022_geolocation-23'{
+                    withSonarQubeEnv(credentialsId: 'sonar-api-key') {
+                    sh 'mvn clean package sonar:sonar'
                 }
                }
             }
