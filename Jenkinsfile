@@ -2,6 +2,7 @@ pipeline {
     agent any
      tools {
   maven 'M2_HOME'
+  sonarQube 'SONAR_RUNNER_HOME'
      }
 
     stages{
