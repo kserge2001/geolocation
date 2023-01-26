@@ -30,7 +30,7 @@ pipeline {
         stage ('SonarQube analysis'){
             steps {
                 script{
-                 mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=henrykrop2022_geolocation-23{
+                 sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=henrykrop2022_geolocation-23'{
                     sh 'mvn clean package sonar:sonar'
                 }
                }
