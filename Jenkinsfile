@@ -2,8 +2,6 @@ pipeline {
     agent any
      tools {
   maven 'M2_HOME'
-  
-  sonarQube 'SONAR_RUNNER_HOME'
      }
 
     stages{
@@ -32,7 +30,7 @@ pipeline {
         stage ('SonarQube analysis'){
             steps {
                 script{
-                withSonarQubeEnv(credentialsId: 'sonar-api-key') {
+                 mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=henrykrop2022_geolocation-23{
                     sh 'mvn clean package sonar:sonar'
                 }
                }
