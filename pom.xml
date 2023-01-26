@@ -16,7 +16,7 @@
 	<packaging>jar</packaging>
 	<properties>
 		<java.version>11</java.version>
-		<sonar.organization>henrykrop2022_geolocation-23</sonar.organization>
+		<sonar.organization>geolocation-23</sonar.organization>
   <sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 
