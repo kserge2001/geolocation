@@ -24,13 +24,13 @@ pipeline {
         stage('Maven Build'){
             steps {
                 sh 'mvn clean install'
-                sh 'mvn verify sonar:sonar'
             }
         }
         stage('Quality-Gate'){
             steps {
                 script{
                  sh 'mvn clean package sonar:sonar'
+                  sh 'mvn verify sonar:sonar'
                    
                 }  
             }   
