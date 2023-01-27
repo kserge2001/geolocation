@@ -26,17 +26,13 @@ pipeline {
                 sh 'mvn clean install package'
             }
         }  
-        stage('Build Analysis'){
+        stage('Build & SonarQube Analysis'){
             steps {
                 agent {
                 docker {image 'maven:3.8.6-openjdk-11-slim' }
-               }   
+                sh 'mvn sonar:sonar -Dsonar.projectKey=henrykrop2022_geolocation-23 -Dsonar.java.banaries=.'
+                }   
             }
         }
-        step('SonarQube Analysis') {
-                withSonarQubeEnv ('SonarServer'){
-                    sh 'mvn sonar:sonar -Dsonar.projectKey=henrykrop2022_geolocation-23 -Dsonar.java.banaries=.'
-                   }
-               }
-            }
     }
+}
