@@ -32,6 +32,10 @@ pipeline {
                 docker {image 'maven:3.8.6-openjdk-11-slim' }
                }   
             }
+            steps{
+                withSonarQubeEnv ('SonarServer'){
+                    sh 'mvn sonar:sonar -Dsonar.projectKey=henrykrop2022_geolocation-23 -Dsonar.java.banaries=.'
+            }
         }
     }
 }
