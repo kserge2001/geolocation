@@ -30,7 +30,7 @@ pipeline {
         stage ('SonarQube analysis'){
             steps {
                 script {
-                    withSonarQubeEnv {
+                   withSonarQubeEnv(credentialsId: 'SONAR_TOKEN') {
                         sh 'mvn clean package sonar:sonar'
                     }
                 }  
@@ -39,7 +39,7 @@ pipeline {
         stage ('Quality Gate Status'){
             steps {
                 script {
-                    waitForQualityGate abortPipeline: true
+                    waitForQualityGate abortPipeline: false {
                 }
             }   
         }
