@@ -26,15 +26,6 @@ pipeline {
                 sh 'mvn clean install package'
             }
         }
-        stage('Quality-Gate'){
-            steps {
-                script{
-                    timeout(time: 1, unit: 'HOURS') {
-                         waitForQualityGate false
-                    }
-                }
-            }   
-        }
         stage('SonarQube Analysis'){
             
             steps {
@@ -46,6 +37,16 @@ pipeline {
                   
             }
         }
+        stage('Quality-Gate'){
+            steps {
+                script{
+                    timeout(time: 1, unit: 'HOURS') {
+                         waitForQualityGate false
+                    }
+                }
+            }   
+        }
+        
         
     }
 }
