@@ -31,7 +31,6 @@ pipeline {
             steps {
                 withSonarQubeEnv('SonarQube Scanner') {
                 sh 'mvn sonar:sonar'
-                sh 'mvn -Djar.finalName=geolocation...'
                 }
             }   
             
