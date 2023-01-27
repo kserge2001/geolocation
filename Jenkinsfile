@@ -32,7 +32,7 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv('Sonarserver') {
-                    sh "${scannerHome}/bin/sonar-scanner"
+                    sh "${scannerHome}/opt/sonar-scanner"
                 }
                 if ("${json.projectStatus.status}" == "ERROR") {
                     currentBuild.result = 'FAILURE'
