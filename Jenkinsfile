@@ -29,7 +29,9 @@ pipeline {
         stage('Quality-Gate'){
 
             steps {
-                waitForQualityGate abortPipeline: false    
+                script{
+                waitForQualityGate abortPipeline: false  
+                }  
             }   
         }
         stage('SonarQube Analysis'){
