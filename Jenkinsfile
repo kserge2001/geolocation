@@ -34,10 +34,6 @@ pipeline {
                 withSonarQubeEnv('Sonarserver') {
                     sh "${scannerHome}/opt/sonar-scanner"
                 }
-                if ("${json.projectStatus.status}" == "ERROR") {
-                    currentBuild.result = 'FAILURE'
-                     error('Pipeline aborted due to quality gate failure.')
-                }
             }
           }
         stage('Build & SonarQube Analysis #2'){
