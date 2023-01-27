@@ -37,7 +37,7 @@ pipeline {
         stage('Quality-Gate Status'){
             steps {
                 script {
-                    waitForQualityGate abortPipeline: false, credentialsId: 'dev-utrains' {
+                    waitForQualityGate false {
                         sh 'mvn clean package sonar:sonar'
                     }
                 }
