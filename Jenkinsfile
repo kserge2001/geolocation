@@ -30,7 +30,6 @@ pipeline {
             steps {
                 script{
                  sh 'mvn clean package sonar:sonar'
-                  sh 'mvn verify sonar:sonar'
                    
                 }  
             }   
