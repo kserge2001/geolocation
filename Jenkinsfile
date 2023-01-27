@@ -25,12 +25,11 @@ pipeline {
             steps{
                 sh 'mvn clean install package'
             }
-        }
-    steps {   
+        }  
         stage('Build & SonarQube Analysis'){
             agent {
                 docker {image 'maven:3.8.6-openjdk-11-slim' }
-               }
+               
             }
         }
     }
