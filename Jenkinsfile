@@ -47,7 +47,7 @@ pipeline {
        stage('Upload to Nexus'){
             steps{
                 script{
-               def MavenPom = readMavenPom file: 'pom.xml'
+               def mavenPom = readMavenPom file: 'pom.xml'
             nexusArtifactUploader artifacts:
              [
                 [
