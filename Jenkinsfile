@@ -52,7 +52,7 @@ pipeline {
                         [
                             artifactId: 'bioMedical',
                              classifier: '', 
-                             file: 'target/spring-boot-starter-mail.jar', 
+                             file: 'target/bioMedical.jar', 
                              type: 'jar'
                              ]   
                     ], 
