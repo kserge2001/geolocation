@@ -27,6 +27,7 @@ pipeline {
             }
         }
         stage('SonarQube Analysis'){
+            agent any
             steps {
                 script {
                     withSonarQubeEnv(credentialsId: 'dev-utrains') {  
