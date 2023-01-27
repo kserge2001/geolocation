@@ -33,8 +33,10 @@ pipeline {
                }   
             }
             steps{
+                script {
                 withSonarQubeEnv ('SonarServer'){
                     sh 'mvn sonar:sonar -Dsonar.projectKey=henrykrop2022_geolocation-23 -Dsonar.java.banaries=.'
+                   }
                }
             }
         }
