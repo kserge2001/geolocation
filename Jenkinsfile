@@ -30,13 +30,13 @@ pipeline {
             steps {
                 withSonarQubeEnv('Sonarqube-9.3')
                 sh 'mvn sonar:sonar'
-                }
+                
             }   
             
         }
         stage('Quality Gate'){
             steps{
-                    timeout(time: 20, unit: 'MINUTES') {
+                    timeout(time: 20, unit: 'MINUTES'){
                           def qg = waitForQualityGate()
                            if (qg.status != 'OK') {
                             error "Pipeline stopped because of quality gate status: ${qg.status}"
@@ -46,7 +46,7 @@ pipeline {
                 }
             }
         }
-    
+}
 
     
 
