@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Maven Build'){
             steps {
-                sh 'mvn clean install packages'
+                sh 'mvn clean install package'
             }
         }
         stage('Quality-Gate'){
