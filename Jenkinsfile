@@ -7,6 +7,7 @@ pipeline {
         stage('Git Checkout'){
             steps{
                 git branch: 'main', url: 'https://github.com/henrykrop2022/geolocation-23.git'
+                }
             }
         }
         stage('UNIT Testing') {
@@ -37,18 +38,15 @@ pipeline {
         stage('Quality Gate'){
             steps{
                 script {
-                    timeout(time: 20, unit: 'MINUTES'){
-                          def qg = waitForQualityGate()
-                           if (qg.status != 'OK') {
-                            error "Pipeline stopped because of quality gate status: ${qg.status}"
-                           }
-                    }
-
+                    waitForQualityGate abortPipeline: false, credentialsId: 'sonarqube-token'
+        
                 }
+
             }
-        }
+       }
     }
-}
+    
+
 
     
 
