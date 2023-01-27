@@ -29,9 +29,8 @@ pipeline {
         stage('Quality-Gate'){
             steps {
                 script{
-                waitForQualityGate abortPipeline: false {
                  sh 'mvn clean package sonar:sonar'
-                   }
+                   
                 }  
             }   
         }
