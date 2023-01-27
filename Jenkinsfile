@@ -57,12 +57,12 @@ pipeline {
                 type: "${mavenPom.packaging}"
                 ]
             ], 
-            credentialsId: "nexus2", 
+            credentialsId: 'nexus2', 
             groupId: "${mavenPom.groupId}", 
-            nexusUrl: "192.168.78.112:8081", 
-            nexusVersion: "nexus3", 
-            protocol: "http", 
-            repository: "geolocation-release", 
+            nexusUrl: '192.168.78.112:8081', 
+            nexusVersion: 'nexus3', 
+            protocol: 'http', 
+            repository: 'geolocation-release', 
             version: "${mavenPom.version}"
                 }
             }
