@@ -28,17 +28,20 @@ pipeline {
         }
         stage('Quality-Gate'){
             steps {
-                 sh 'mvn clean package sonar:sonar'
-                   
-                  
+                script{
+                    timeout(time: 1, unit: 'HOURS') {
+                         waitForQualityGate abortPipeline: true
+                       }
+                    }
             }   
         }
         stage('SonarQube Analysis'){
             
             steps {
                 script {
-                    withSonarQubeEnv(credentialsId: 'dev-utrains') {  
-                        sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar'
+                    withSonarQubeEnv('My SonarQube Server') {  
+                        withMaven(maven:'Maven 3.5') {
+                         sh 'mvn clean package sonar:sonar'
                         
                     }
                 }  
