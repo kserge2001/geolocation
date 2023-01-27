@@ -30,6 +30,7 @@ pipeline {
             steps {
                 script {
                     withSonarQubeEnv(credentialsId: 'dev-utrains') {  
+                        sh 'mvn clean package sonar:sonar'
                     }
                 }  
             }
@@ -38,7 +39,7 @@ pipeline {
             steps {
                 script {
                     waitForQualityGate false {
-                        sh 'mvn clean package sonar:sonar'
+                        
                     }
                 }
             }   
