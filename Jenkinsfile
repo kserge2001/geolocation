@@ -47,19 +47,19 @@ pipeline {
        stage('Upload to Nexus'){
             steps{
                 script{
-               def pom = readpom file: 'pom.xml'
+               def MavenPom = readMavenPom file: 'pom.xml'
             nexusArtifactUploader artifacts:
-             [[artifactId: "${pom.artifactId}", 
+             [[artifactId: "${MavenPom.artifactId}", 
                 classifier: '', 
-                  file: "target/${pom.artifactId}-${pom.version}.${pom.packaging}", 
-                    type: "${pom.packaging}"]], 
+                  file: "target/${MavenPom.artifactId}-${MavenPom.version}.${MavenPom.packaging}", 
+                    type: "${MavenPom.packaging}"]], 
                        credentialsId: "NexusID", 
-                          groupId: "${pom.groupId}", 
+                          groupId: "${MavenPom.groupId}", 
                             nexusUrl: '192.168.78.112:8081', 
                               nexusVersion: 'nexus3', 
                                 protocol: 'http', 
                                   repository: 'geolocation-release',
-                                    version: "${pom.version}"
+                                    version: "${MavenPom.version}"
                 }
             }
        }
