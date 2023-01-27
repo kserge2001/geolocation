@@ -47,12 +47,13 @@ pipeline {
        stage('Upload to Nexus'){
             steps{
                 script{
+                    def mavenPom = readMavenPom file: 'pom.xml'
                     nexusArtifactUploader artifacts:
                      [
                         [
                         artifactId: 'bioMedical',
                         classifier: '', 
-                        file: 'target/pom.xml.jar', 
+                         file: "target/${mavenPom.artifactId}-${mavenPom.version}.${mavenPom.packaging}",
                         type: 'jar'
                         ]
                     ], 
