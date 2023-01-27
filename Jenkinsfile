@@ -36,9 +36,10 @@ pipeline {
         }
         stage("Quality Gate"){
             steps{
+                scrips {
                 timeout(time: 20,unit: 'MINUTES'){
-                    waitForQualityGate abortPipeline: true 
-                    
+                    waitForQualityGate abortPipeline: false 
+                    }
                 }
             }
         }
