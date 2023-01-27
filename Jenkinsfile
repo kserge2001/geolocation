@@ -19,6 +19,9 @@ pipeline {
             steps{
                 script{
                     sh 'mvn verify -DskipUnitTests'
+                    sh 'mvn clean'
+                    sh 'mvn install -DskipTests'
+                    sh 'mvn package -DskipTests'
                 }
             }
         }
