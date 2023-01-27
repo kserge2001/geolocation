@@ -26,6 +26,15 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
+        stage('Quality-Gate Status'){
+            steps {
+                script {
+                    waitForQualityGate false {
+                        
+                    }
+                }
+            }   
+        }
         stage('SonarQube Analysis'){
             
             steps {
@@ -37,14 +46,6 @@ pipeline {
                 }  
             }
         }
-        stage('Quality-Gate Status'){
-            steps {
-                script {
-                    waitForQualityGate false {
-                        
-                    }
-                }
-            }   
-        }
+        
     }
 }
