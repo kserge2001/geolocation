@@ -14,9 +14,9 @@ pipeline {
         stage('UNIT Testing'){
             steps{
                sh 'mvn test'
-                }
             }
         }
+    }
     
 //         stage('Integration Testing'){
 //             steps{
