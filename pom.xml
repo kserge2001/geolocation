@@ -17,7 +17,7 @@
 	<properties>
 		<java.version>11</java.version>
 		<sonar.organization>dev-utrains</sonar.organization>
-  <sonar.host.url>http://192.168.78.88:9000/</sonar.host.url>
+  <sonar.host.url>http://192.168.78.88:9000</sonar.host.url>
 	</properties>
 
 <dependencies>

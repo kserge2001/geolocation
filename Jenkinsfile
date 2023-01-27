@@ -62,10 +62,19 @@ pipeline {
             nexusUrl: '192.168.78.112:8081', 
             nexusVersion: 'nexus3', 
             protocol: 'http', 
-            repository: 'geolocation-release'
+            repository: 'geolocation-release',
             version: "${mavenPom.version}"
                 }
             }
+       }stage('Docker Image Build'){
+         steps{
+            script{
+                sh 'docker image build -t $JOB_NAME:V1$BUILD_ID .'
+                sh ' docker image tag $JOB_NAME:V1$BUILD_ID henryrop/$JOB_NAME:V1$BUILD_ID'
+                sh ' docker image tag $JOB_NAME:V1$BUILD_ID henryrop/$JOB_NAME:latest'
+
+            }
+         }
        }
        
     }
