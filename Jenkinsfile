@@ -31,6 +31,7 @@ pipeline {
             steps {
                 withSonarQubeEnv('SonarQube Scanner') {
                 sh 'mvn sonar:sonar'
+                sh 'mvn -Djar.finalName=geolocation...'
                 }
             }   
             
@@ -47,23 +48,22 @@ pipeline {
        stage('Upload to Nexus'){
             steps{
                 script{
-                    def pom = readMavenPom : 'pom.xml'
                     nexusArtifactUploader artifacts:
-                    [
+                     [
                         [
-                            artifactId: "${mavenPom.artifactId}", 
-                            classifier: '', 
-                            file: "target/${mavenPom.artifactId}-${mavenPom.version}.${mavenPom.packaging}", 
-                            type: "${mavenPom.packaging}"
-                            ]
-                        ], 
-                            credentialsId: "NexusID", 
-                            groupId: "${mavenPom.groupId}", 
-                            nexusUrl: '192.168.78.112:8081', 
-                            nexusVersion: 'nexus3', 
-                            protocol: 'http', 
-                            repository: 'geolocation-release',
-                            version: "${mavenPom.version}"
+                        artifactId: 'bioMedical',
+                        classifier: '', 
+                        file: 'target/geolocation.jar', 
+                        type: 'jar'
+                        ]
+                    ], 
+                    credentialsId: 'Nexus-repo',
+                     groupId: 'com.spring', 
+                     nexusUrl: '192.168.78.88:9000', 
+                     nexusVersion: 'nexus3', 
+                     protocol: 'http', 
+                     repository: 'geolocation-release', 
+                     version: '0.0.6-RELEASE'
                 }
             }
        }
