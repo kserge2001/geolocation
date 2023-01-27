@@ -33,9 +33,7 @@ pipeline {
                     withSonarQubeEnv('My SonarQube Server') {
                         sh 'mvn clean package sonar:sonar'
                     }
-                }
-                }
-               }
+                }  
             }
         }
         stage ('Quality Gate Status'){
