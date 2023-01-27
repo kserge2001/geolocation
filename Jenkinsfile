@@ -52,7 +52,7 @@ pipeline {
                         [
                             artifactId: 'bioMedical',
                              classifier: '', 
-                             file: 'target/bioMedical.jar', 
+                             file: 'target/test.jar', 
                              type: 'jar'
                              ]   
                     ], 
