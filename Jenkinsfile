@@ -29,7 +29,7 @@ pipeline {
         stage('Quality-Gate Status'){
             steps {
                 script {
-                    waitForQualityGate false {
+                    waitForQualityGate abortPipeline: false, credentialsId: 'dev-utrains' {
                         
                     }
                 }
