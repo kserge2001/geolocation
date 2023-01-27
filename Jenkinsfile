@@ -1,21 +1,21 @@
-pipeline {
+pipeline{
     agent any
-    tools {
+    tools{
         maven 'M2_HOME'
     }
-    stages {
-        stage ('Git Checkout'){
+    stages{
+        stage('Git Checkout'){
             steps{
                 git branch: 'main', url: 'https://github.com/henrykrop2022/geolocation-23.git'
                 
             }
         }
-        stage('UNIT Testing') {
+        stage('UNIT Testing'){
             steps{
                 sh 'mvn test'
             }
         }
-        stage('Integration Testing') {
+        stage('Integration Testing'){
             steps{
                 script{
                     sh 'mvn verify -DskipUnitTests'
