@@ -28,10 +28,9 @@ pipeline {
         }
         stage('Quality-Gate'){
             steps {
-                script{
                  sh 'mvn clean package sonar:sonar'
                    
-                }  
+                  
             }   
         }
         stage('SonarQube Analysis'){
