@@ -26,10 +26,10 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
-        stage('SonarQube analysis'){
+        stage('SonarQube Analysis'){
             steps {
                 script {
-                    waitForQualityGate abortPipeline: false {  
+                    waitForQualityGate abortPipeline: false{  
                     }
                 }  
             }
