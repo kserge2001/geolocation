@@ -49,17 +49,21 @@ pipeline {
                 script{
                def MavenPom = readMavenPom file: 'pom.xml'
             nexusArtifactUploader artifacts:
-             [[artifactId: "${MavenPom.artifactId}", 
+            [
+                [
+                artifactId: "${MavenPom.artifactId}", 
                 classifier: '', 
-                  file: "target/${MavenPom.artifactId}-${MavenPom.version}.${MavenPom.packaging}", 
-                    type: "${MavenPom.packaging}"]], 
-                       credentialsId: "NexusID", 
-                          groupId: "${MavenPom.groupId}", 
-                            nexusUrl: '192.168.78.112:8081', 
-                              nexusVersion: 'nexus3', 
-                                protocol: 'http', 
-                                  repository: 'geolocation-release',
-                                    version: "${MavenPom.version}"
+                file: "target/${MavenPom.artifactId}-${MavenPom.version}.${MavenPom.packaging}", 
+                type: "${MavenPom.packaging}"
+                ]
+            ], 
+            credentialsId: "NexusID", 
+            groupId: "${MavenPom.groupId}", 
+            nexusUrl: '192.168.78.112:8081', 
+            nexusVersion: 'nexus3', 
+            protocol: 'http', 
+            repository: 'geolocation-release',
+            version: "${MavenPom.version}"
                 }
             }
        }
