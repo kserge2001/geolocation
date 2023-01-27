@@ -29,7 +29,7 @@ pipeline {
         stage('SonarQube Analysis'){
             steps {
                 script {
-                    waitForQualityGate abortPipeline: false{  
+                    withSonarQubeEnv(credentialsId: 'dev-utrains') {  
                     }
                 }  
             }
@@ -37,7 +37,7 @@ pipeline {
         stage('Quality-Gate Status'){
             steps {
                 script {
-                    withSonarQubeEnv {
+                    waitForQualityGate abortPipeline: false, credentialsId: 'dev-utrains' {
                         sh 'mvn clean package sonar:sonar'
                     }
                 }
