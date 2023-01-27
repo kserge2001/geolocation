@@ -44,28 +44,31 @@ pipeline {
 
             }
        }
-       stage ('upload artifact') {
-            steps {
-                script {
-                def mavenPom = readMavenPom file: 'pom.xml'
-            nexusArtifactUploader artifacts:
-             [[artifactId: "${mavenPom.artifactId}", 
-                classifier: '', 
-                  file: "target/${mavenPom.artifactId}-${mavenPom.version}.${mavenPom.packaging}", 
-                    type: "${mavenPom.packaging}"]], 
-                       credentialsId: "NexusID", 
-                          groupId: "${mavenPom.groupId}", 
-                            nexusUrl: '192.168.78.112:8081', 
-                              nexusVersion: 'nexus3', 
-                                protocol: 'http', 
-                                  repository: 'geolocation-release',
-                                    version: "${mavenPom.version}"
-                        }
-                    }   
-                } 
+       stage('Upload War file to Nexus'){
+            steps{
+                script{
+                    nexusArtifactUploader artifacts:
+                     [
+                        [
+                            artifactId: 'bioMedical',
+                             classifier: '', 
+                             file: 'target/spring-boot-starter-mail.jar', 
+                             type: 'jar'
+                             ]   
+                    ], 
+                    credentialsId: 'Nexus-repo',
+                    groupId: 'com.spring',
+                    nexusUrl: '192.168.78.112:8081/', 
+                    nexusVersion: 'nexus2', 
+                    protocol: 'http', 
+                    repository: 'geolocation-release', 
+                    version: '0.0.6-RELEASE'
+                }
             }
+       }
+       
     }
-
+}
 
 
     
