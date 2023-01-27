@@ -8,7 +8,8 @@ pipeline {
         stage('Git Checkout'){
             steps{
                 git branch: 'main', url: 'https://github.com/henrykrop2022/geolocation-23.git'
-            }
+               }
+           }
         }
         stage('UNIT Testing'){
             steps{
@@ -35,8 +36,6 @@ pipeline {
               withSonarQubeEnv('SonarServer') {
                   sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=henrykrop2022_geolocation-23'
               }
-            }
-          }
         }
         stage('Quality-Gate'){
             steps {
@@ -48,3 +47,4 @@ pipeline {
             }   
         }   
     }
+}
