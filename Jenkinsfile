@@ -52,7 +52,7 @@ pipeline {
                         [
                         artifactId: 'bioMedical',
                         classifier: '', 
-                        file: 'target/geolocation.jar', 
+                        file: 'target/pom.xml.jar', 
                         type: 'jar'
                         ]
                     ], 
