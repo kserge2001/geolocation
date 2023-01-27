@@ -48,7 +48,7 @@ pipeline {
             steps{
                 script{
                def mavenPom = readMavenPom file: 'pom.xml'
-               def nexusRepo=readMavenPom.version.endsWith("SNAPSHOT") ? "Geo-SNAPSHOT":"geolocation-release"
+               def nexusRepo = readMavenPom.version.endsWith("SNAPSHOT") ? "Geo-SNAPSHOT":"geolocation-release"
             nexusArtifactUploader artifacts:
              [
                 [
