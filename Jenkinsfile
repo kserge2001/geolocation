@@ -30,7 +30,7 @@ pipeline {
             
             steps {
                 script {
-                    withSonarQubeEnv('My SonarQube Server') {  
+                    withSonarQubeEnv('sonarcloud') {  
                         sh 'mvn clean package sonar:sonar'
                     }
                 }  
