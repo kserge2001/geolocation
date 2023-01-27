@@ -48,6 +48,17 @@ pipeline {
             steps{
                 script{
                 def mavenPom = readMavenPom file: 'pom.xml'
+                filesByGlob = findFiles(glob: "target/*.${pom.packaging}");
+35
+                    echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
+36
+                    artifactPath = filesByGlob[0].path;
+37
+                    artifactExists = fileExists artifactPath;
+38
+                    if(artifactExists) {
+39
+                        echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
                    nexusArtifactUploader artifacts:
                     [
                         [
