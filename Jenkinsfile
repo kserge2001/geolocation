@@ -27,7 +27,7 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
-        stage ('SonarQube analysis'){
+        stage('SonarQube analysis'){
             steps {
                 script {
                    withSonarQubeEnv(credentialsId: 'SONAR_TOKEN') {
@@ -36,13 +36,11 @@ pipeline {
                 }  
             }
         }
-        stage ('Quality-Gate Status'){
-
+        stage('Quality-Gate Status'){
             steps {
-
                 script {
-
                     waitForQualityGate abortPipeline: false, credentialsId: 'SONAR_TOKEN' {
+                    }
                 }
             }   
         }
@@ -64,7 +62,7 @@ pipeline {
                                     version: "${mavenPom.version}"
                         }
                     }   
-                } 
+                
             }
     }
 }
