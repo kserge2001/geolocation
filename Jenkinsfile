@@ -30,7 +30,8 @@ pipeline {
 
             steps {
                 script{
-                waitForQualityGate abortPipeline: false  
+                waitForQualityGate abortPipeline: false 
+                 sh 'mvn clean package sonar:sonar'
                 }  
             }   
         }
@@ -40,7 +41,7 @@ pipeline {
                 script {
                     withSonarQubeEnv(credentialsId: 'dev-utrains') {  
                         sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar'
-                        sh 'mvn clean package sonar:sonar'
+                        
                     }
                 }  
             }
