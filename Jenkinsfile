@@ -25,6 +25,7 @@ pipeline {
         stage('Maven Build'){
             steps {
                 sh 'mvn clean install'
+                sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=henrykrop2022_geolocation-23'
             }
         }
         stage('SonarQube analysis'){
