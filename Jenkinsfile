@@ -38,7 +38,7 @@ pipeline {
             steps{
                 script {
                 timeout(time: 20,unit: 'MINUTES'){
-                    waitForQualityGate abortPipeline: false 
+                     waitForQualityGate abortPipeline: false, credentialsId: 'dev-utrains'
                     }
                 }
             }
