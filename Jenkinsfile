@@ -30,7 +30,7 @@ pipeline {
             steps {
                 script {
                     waitForQualityGate abortPipeline: false {
-                        sh 'mvn clean package sonar:sonar'
+                        
                     }
                 }  
             }
@@ -39,6 +39,7 @@ pipeline {
             steps {
                 script {
                     withSonarQubeEnv {
+                        sh 'mvn clean package sonar:sonar'
                     }
                 }
             }   
