@@ -1,4 +1,4 @@
-FROM openjdk:8
+FROM 
 ADD target/*.jar biom.jar
 EXPOSE 8082
 CMD java -jar biom.jar
