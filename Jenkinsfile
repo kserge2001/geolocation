@@ -27,10 +27,10 @@ pipeline {
             }
         }
         stage('SonarQube Analysis'){
-            agent any
+            
             steps {
                 script {
-                    withSonarQubeEnv(credentialsId: 'dev-utrains') {  
+                    withSonarQubeEnv('My SonarQube Server') {  
                         sh 'mvn clean package sonar:sonar'
                     }
                 }  
