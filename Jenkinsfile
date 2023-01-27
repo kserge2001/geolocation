@@ -59,7 +59,7 @@ pipeline {
                                 protocol: 'http', 
                                   repository: 'maven-nexus-repo',
                                     version: "${mavenPom.version}"
-                        
+                        }
                     }   
                 } 
             }
