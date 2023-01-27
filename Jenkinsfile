@@ -38,13 +38,12 @@ pipeline {
         stage('SonarQube Analysis'){
             
             steps {
-                script {
-                    withSonarQubeEnv('My SonarQube Server') {  
+                script { 
                         withMaven(maven:'Maven 3.5') {
                          sh 'mvn clean package sonar:sonar'
                         }
                     }
-                }  
+                  
             }
         }
         
