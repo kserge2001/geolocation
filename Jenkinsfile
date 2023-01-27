@@ -31,8 +31,8 @@ pipeline {
                 script{
                     timeout(time: 1, unit: 'HOURS') {
                          waitForQualityGate abortPipeline: true
-                       }
                     }
+                }
             }   
         }
         stage('SonarQube Analysis'){
@@ -42,7 +42,7 @@ pipeline {
                     withSonarQubeEnv('My SonarQube Server') {  
                         withMaven(maven:'Maven 3.5') {
                          sh 'mvn clean package sonar:sonar'
-                        
+                        }
                     }
                 }  
             }
