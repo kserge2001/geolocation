@@ -1,9 +1,9 @@
-FROM maven
+FROM maven as build
 WORKDIR /app
 COPY . .
 RUN mvn install
 
-FROM openjdk:1.8
+FROM openjdk:11
 WORKDIR /app
 COPY --from=build /app/target/bioMedical.jar /app/
 EXPOSE 9090
