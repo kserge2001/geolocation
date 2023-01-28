@@ -3,7 +3,7 @@ WORKDIR /app
 COPY . .
 RUN mvn install
 
-FROM openjdk:9
+FROM openjdk:11
 WORKDIR /app
 COPY --from=build /app/target/bioMedical.jar /app/
 EXPOSE 9090
