@@ -45,9 +45,9 @@ pipeline{
        stage('Docker Image Build'){
          steps{
             script{
-                sh ' docker image build -t $JOB_NAME:V1$BUILD_ID  .'
+                sh ' docker image build -t $JOB_NAME:V1$BUILD_ID .'
                 sh ' docker image tag $JOB_NAME:V1$BUILD_ID henryrop/$JOB_NAME:V1$BUILD_ID'
-                 sh ' docker image tag $JOB_NAME:V1$BUILD_ID henryrop/$JOB_NAME:latest'
+                sh ' docker image tag $JOB_NAME:V1$BUILD_ID henryrop/$JOB_NAME:latest'
                 }
             }
         }
@@ -55,7 +55,7 @@ pipeline{
         stage('Push Image to Dockerhub') {
              steps{
                 script{
-                    withCredentials([string(credentialsId: 'henryrop', variable: 'dockerhub_cred')]) {
+                    withCredentials([string(credentialsId: 'henryrop', variable: 'dockerhub-cred')]) {
                         sh 'docker login -u henryrop -p ${dockerhub_cred}'
                         sh 'docker image push henryrop/$JOB_NAME:V1$BUILD_ID'
                         sh  'docker image push henryrop/$JOB_NAME:latest'
