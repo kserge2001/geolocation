@@ -47,7 +47,7 @@ pipeline{
             script{
                 sh 'docker image build -t $JOB_NAME:V1$BUILD_ID .'
                 sh ' docker image tag $JOB_NAME:V1$BUILD_ID henryrop/$JOB_NAME:V1$BUILD_ID'
-                sh ' docker image tag $JOB_NAME:V1$BUILD_ID henryrop/$JOB_NAME:latest'
+                // sh ' docker image tag $JOB_NAME:V1$BUILD_ID henryrop/$JOB_NAME:latest'
                 }
             }
         }
