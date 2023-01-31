@@ -6,7 +6,7 @@ pipeline{
     stages{
         stage('Git Checkout'){
             steps{
-                git branch: 'main', url: 'https://github.com/henrykrop2022/geolocation-23.git'
+              git branch: 'main', url: 'https://github.com/henrykrop2022/geolocation-23.git'
                 
             }
         }
@@ -29,7 +29,7 @@ pipeline{
         }
         stage(' SonarQube Analysis'){
             steps {
-                withSonarQubeEnv('SonarQube') {
+                withSonarQubeEnv(credentialsId: 'sonarqube-token') {
                 sh 'mvn sonar:sonar'
                 }
             }   
