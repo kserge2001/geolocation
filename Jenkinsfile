@@ -42,18 +42,19 @@ pipeline{
                 }
             }
        }
+       stage('Docker Image Build'){
+         steps{
+            script{
+                sh 'docker image build -t $JOB_NAME:V1$BUILD_ID .'
+                sh ' docker image tag $JOB_NAME:V1$BUILD_ID henryrop/$JOB_NAME:V1$BUILD_ID'
+                sh ' docker image tag $JOB_NAME:V1$BUILD_ID henryrop/$JOB_NAME:latest'
+                }
+            }
+        }
     }
 }
 
-//        stage('Docker Image Build'){
-//          steps{
-//             script{
-//                 sh 'docker image build -t $JOB_NAME:V1$BUILD_ID .'
-//                 sh ' docker image tag $JOB_NAME:V1$BUILD_ID henryrop/$JOB_NAME:V1$BUILD_ID'
-//                 sh ' docker image tag $JOB_NAME:V1$BUILD_ID henryrop/$JOB_NAME:latest'
-//                 }
-//             }
-//         }
+       
 //         stage('Push Image to Dockerhub') {
 //              steps{
 //                 script{
