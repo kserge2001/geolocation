@@ -3,13 +3,11 @@ pipeline{
     tools{
         maven 'M2_HOME'
     }
-    stages{
-        stage('Git Checkout'){
-            steps{
-              git branch: 'main', url: 'https://github.com/henrykrop2022/geolocation-23.git'
-                
-            }
-        }
+    environment {
+    registry = '880385147960.dkr.ecr.us-east-1.amazonaws.com/geolocation'
+    registryCredential = 'aws-test'
+    dockerimage = ''
+}
         stage('UNIT Testing'){
             steps{
                 sh 'mvn test'
@@ -54,22 +52,40 @@ pipeline{
                 }
             }
         }
-        
-        stage('Push Image to Dockerhub') {
-             steps{
-                script{
-                    withCredentials([string(credentialsId: 'henryrop', variable: 'dockerID')]) {
-                        sh 'docker login -u henryrop -p ${dockerID}'
-                        sh 'docker image push henryrop/$JOB_NAME:V1$BUILD_ID'
-                        sh  'docker image push henryrop/$JOB_NAME:latest'
-                         sh 'docker image rmi $JOB_NAME:v1.$BUILD_ID  henryrop/$JOB_NAME:v1.$BUILD_ID henryrop/$JOB_NAME:latest'
-                   }
-                }
-             }
-        }
+    }   
 
-    }
-}
+
+
+
+
+
+
+    //     stage('Push Image to Dockerhub') {
+    //          steps{
+    //             script{
+    //                 withCredentials([string(credentialsId: 'henryrop', variable: 'dockerID')]) {
+    //                     sh 'docker login -u henryrop -p ${dockerID}'
+    //                     sh 'docker image push henryrop/$JOB_NAME:V1$BUILD_ID'
+    //                     sh  'docker image push henryrop/$JOB_NAME:latest'
+    //                      sh 'docker image rmi $JOB_NAME:v1.$BUILD_ID  henryrop/$JOB_NAME:v1.$BUILD_ID henryrop/$JOB_NAME:latest'
+    //                }
+    //             }
+    //          }
+    //     }
+    // }
+
+
+             // stages{
+    //     stage('Git Checkout'){
+    //         steps{
+    //           git branch: 'main', url: 'https://github.com/henrykrop2022/geolocation-23.git'
+                
+    //         }
+    //     }
+        
+
+    
+
 
        
             
