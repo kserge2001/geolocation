@@ -58,8 +58,7 @@ pipeline{
                 script{
                     // docker.withRegistry('https://880385147960.dkr.ecr.us-east-1.amazonaws.com/geolocation','ecr:us-east-1:aws-test') {
                         sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 880385147960.dkr.ecr.regionus-east-1.amazonaws.com'
-                        dockerImage.push()
-                }
+                        sh ' docker push880385147960.dkr.ecr us-east-1.amazonaws.com/ geolocation:latest '
             }
         }
 
