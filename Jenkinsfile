@@ -56,7 +56,8 @@ pipeline{
         stage('Deploy Image') {
             steps{
                 script{
-                    docker.withRegistry('https://880385147960.dkr.ecr.us-east-1.amazonaws.com/geolocation','ecr:us-east-1:aws-test') {
+                    // docker.withRegistry('https://880385147960.dkr.ecr.us-east-1.amazonaws.com/geolocation','ecr:us-east-1:aws-test') {
+                        sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin aws_account_id.dkr.ecr.regionus-east-1.amazonaws.com'
                         dockerImage.push()
                 }
             }
