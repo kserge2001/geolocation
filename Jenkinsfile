@@ -56,8 +56,7 @@ pipeline{
         stage('Deploy Image') {
             steps{
                 script{
-                    // docker.withRegistry("https://"+registry,"ecr:us-east-1:"+registryCredential) {
-                        withDockerRegistry(credentialsId: 'ecr:us-east-1:aws-user', url: 'https://hub.docker.com/') {
+                    docker.withRegistry("https://"+registry,"ecr:us-east-1:"+registryCredential) {
                         dockerImage.push()
                 }
             }
