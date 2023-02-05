@@ -56,7 +56,7 @@ pipeline{
         stage('Deploy Image') {
             steps{
                 script{
-                    docker.withRegistry('880385147960.dkr.ecr.us-east-1.amazonaws.com/geolocation','ecr:us-east-1:aws-test') {
+                    docker.withRegistry('https://880385147960.dkr.ecr.us-east-1.amazonaws.com/geolocation','ecr:us-east-1:aws-test') {
                         dockerImage.push()
                 }
             }
