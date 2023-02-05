@@ -8,6 +8,7 @@ pipeline{
     registryCredential = 'aws-test'
     dockerimage = ''
 }
+    stages{ 
         stage('UNIT Testing'){
             steps{
                 sh 'mvn test'
@@ -53,6 +54,7 @@ pipeline{
             }
         }
     }   
+}
 
 
 
