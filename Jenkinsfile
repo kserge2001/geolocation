@@ -5,7 +5,7 @@ pipeline{
     }
     environment {
     registry = '880385147960.dkr.ecr.us-east-1.amazonaws.com/geolocation'
-    registryCredential = 'aws-test'
+    registryCredential = 'aws-user'
     dockerimage = ''
 }
     stages{ 
