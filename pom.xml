@@ -14,7 +14,7 @@
 	<name>bioMedical</name>
 	<description>Demo project for Spring Boot</description>
 	<packaging>jar</packaging>
-	<properti+es>
+	<properties>
 		<java.version>1.8</java.version>
 		<sonar.organization>geolocation</sonar.organization>
   <sonar.host.url>https://sonarcloud.io</sonar.host.url>
