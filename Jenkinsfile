@@ -19,12 +19,14 @@ pipeline {
          stage('test') {
             steps {
                 sh 'mvn test'
+                sleep 4
             }
         }
         
          stage('deploy') {
             steps {
                 echo 'deploy'
+                sleep 5
             }
         }
     }
