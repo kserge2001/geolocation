@@ -38,7 +38,7 @@ securityContext: {}
 
 service:
   type: LoadBalancer ### LoadBalancer
-  port: 8082  #updated port
+  port: 80  #updated port
 
 ingress:
   enabled: false
