@@ -5,3 +5,4 @@ haVDGHAVJCXHSJAVC
 afghhyoptp
 hjjkkll;asddwe
 this jenkins server integre with meanve
+Here is the jenkins server to triger a build job when the code is push in the repository
