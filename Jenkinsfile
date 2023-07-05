@@ -5,7 +5,8 @@ pipeline {
     }
    agent any
     tools {
-  maven 'M2_HOME'
+   maven 'Maven 3.6.3' // Use the correct identifier for the installed Maven tool
+    }
 }
 environment {
     registry = '076892551558.dkr.ecr.us-east-1.amazonaws.com/jenkins'
