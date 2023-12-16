@@ -29,11 +29,6 @@ pipeline {
             }
 
         }
-        stage("list the dir") {
-            steps{
-                sh 'ls'
-            }
-
-        }
+        
     }
 }
