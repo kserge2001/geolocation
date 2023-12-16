@@ -19,7 +19,7 @@ pipeline {
                   file: "target/${POM_ARTIFACTID}-${POM_VERSION}.${POM_PACKAGING}", 
                    type: "${POM_PACKAGING}"]], 
                     credentialsId: 'Nexusid', 
-                     groupId:  "${POM_GROUPID}"", 
+                     groupId:  "${POM_GROUPID}", 
                       nexusUrl: '69.164.206.106:8081', 
                        nexusVersion: 'nexus3', 
                         protocol: 'http', 
